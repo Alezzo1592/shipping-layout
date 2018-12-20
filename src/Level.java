@@ -45,4 +45,14 @@ public class Level {
 
         return levelEntropy;
     }
+    @Override
+    public String toString(){
+        String levelString = "";
+        for (int i = 0; i < subLevels.length; i++) {
+            if(!levelString.equals(""))
+                levelString += " | ";
+            levelString+=(subLevels[i]!= null)?"I":"_";
+        }
+        return levelString;
+    }
 }

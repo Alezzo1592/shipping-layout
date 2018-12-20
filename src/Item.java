@@ -9,6 +9,14 @@ public class Item {
     private Integer type;
     private Integer minDistanceEqualsItem = 0;
 
+    @Override
+    public boolean equals(Object anotherItem) {
+
+        if (anotherItem.getClass() != Item.class)
+            return false;
+        return this.toString().equals(anotherItem.toString());
+    }
+
     public Integer getCountOfSubLevel() {
         return countOfSubLevel;
     }

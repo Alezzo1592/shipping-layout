@@ -66,5 +66,7 @@ public class LevelTest {
 
         levelEntropy.addValue(2,1);
         assertTrue(levelEntropy.equals(aNewLevel.calculateEntropy()));
+
+        assertTrue(aNewLevel.toString().equals("I | I | _ | _ | _"));
     }
 }

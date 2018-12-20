@@ -30,6 +30,6 @@ public class FloorPlace {
 
         if (anotherFloorPlace.getClass() != FloorPlace.class)
             return false;
-        return this.streetId == ((FloorPlace)anotherFloorPlace).getStreetId() && this.streetPlaceId.equals(anotherFloorPlace);
+        return this.streetId == ((FloorPlace)anotherFloorPlace).getStreetId() && this.streetPlaceId.equals(((FloorPlace) anotherFloorPlace).getStreetPlaceId());
     }
 }

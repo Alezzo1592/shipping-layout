@@ -8,10 +8,16 @@ import static org.junit.Assert.*;
 public class StreetTest {
 
     @Test
-    public  void testGenerateStreet(){
+    public void testGenerateStreet(){
         Street newSimpleStreet = new Street(1,1);
         assertTrue(1==newSimpleStreet.getNumberOfLevels());
         assertEquals(0,newSimpleStreet.calculateEntropy(1),0);
+    }
+
+    @Test
+    public void testStreetToString(){
+        Street newSimpleStreet = new Street(2,2);
+        assertTrue(newSimpleStreet.toString().equals("_ | _\n_ | _\n"));
     }
 
 }

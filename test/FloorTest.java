@@ -98,4 +98,10 @@ public class FloorTest {
         assertTrue(2 == availablePositionsLevel2_2.size());
 
     }
+
+    @Test
+    public void testFloorToString(){
+        Floor aSimpleFloor = new Floor(2, 2, 2);
+        assertTrue(aSimpleFloor.toString().equals("_ | _\n_ | _\n\n----------------\n_ | _\n_ | _\n"));
+    }
 }

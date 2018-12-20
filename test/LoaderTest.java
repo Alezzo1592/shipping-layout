@@ -14,6 +14,8 @@ public class LoaderTest {
     static String DEFAULT="";
     static String TEST_4x2x2_HAS_ENTROPY = "Floor4X2X2_with_3_items_has_entropy";
     static String TEST_3x2x2_TEST_DUMMY_ALGORITHM = "Floor3X2X2_6_items";
+    static String TEST100x7x60_WITH_10_PORCENT="random_10%_110x7x60.txt";
+    static String ENTRY_OF_75_ITEMS = "random_entry_with_75_items.txt";
 
     @Test
     public void testLoader(){
@@ -98,4 +100,60 @@ public class LoaderTest {
         assertTrue("4.0882".equals(entropy));
     }
 
+
+    @Test
+    public void testLoaderSimpleTestFirstMetaheuristic(){
+        Loader loaderToTest = startLoader(TEST_3x2x2_TEST_DUMMY_ALGORITHM);
+
+        String entropy =parseEntropy (loaderToTest.getEntropy());
+        assertTrue("1.9183".equals(entropy));
+        List<ItemPlace> placeItemsToAdd =  loaderToTest.dummyEntry();
+
+        List<ItemPlace> placeItemsToAddFirstMetaheuristic = loaderToTest.metaheuristicChangeTo(placeItemsToAdd);
+        try {
+            loaderToTest.addItems(placeItemsToAddFirstMetaheuristic);
+        }catch (InvalidSubLevelException e){
+            fail("Error to add item in loader Floor");
+        }
+    }
+
+
+
+    @Test
+    public void testLoaderSimpleTestMetaheuristicChangeFor(){
+        Loader loaderToTest = startLoader(TEST_3x2x2_TEST_DUMMY_ALGORITHM);
+
+        String entropy =parseEntropy (loaderToTest.getEntropy());
+        assertTrue("1.9183".equals(entropy));
+        List<ItemPlace> placeItemsToAdd =  loaderToTest.dummyEntry();
+
+        List<ItemPlace> placeItemsToAddFirstMetaheuristic = loaderToTest.metaheuristicChageFor(placeItemsToAdd);
+        try {
+            loaderToTest.addItems(placeItemsToAddFirstMetaheuristic);
+        }catch (InvalidSubLevelException e){
+            fail("Error to add item in loader Floor");
+        }
+
+    }
+
+    @Test
+    public void testFinalMetaheuristic(){
+        Loader loaderToTest = startLoader(TEST100x7x60_WITH_10_PORCENT);
+        String entropy =parseEntropy (loaderToTest.getEntropy());
+
+        assertTrue("214.4522".equals(entropy));
+
+        List<ItemPlace> newItemsToAdd = loaderToTest.generateHeuristicAssignment(ENTRY_OF_75_ITEMS);
+        List<ItemPlace> placeItemsToAdd = loaderToTest.getBetterList(newItemsToAdd);
+
+
+        try {
+            loaderToTest.addItems(placeItemsToAdd);
+        }catch (InvalidSubLevelException e){
+            fail("Error to add item in loader Floor");
+        }
+
+        String newEntropy =parseEntropy (loaderToTest.getEntropy());
+        assertTrue("214.506".equals(newEntropy));
+    }
 }

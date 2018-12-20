@@ -16,6 +16,7 @@ public class ItemTests {
         assertTrue (-1  == genericItem.getLevel());
         assertTrue( 0   == genericItem.getMinDistanceEqualsItem());
     }
+
     @Test
     public void testGenerateCustomItem(){
         Item genericItem = new Item(2,1,2,1,1,1);
@@ -27,4 +28,9 @@ public class ItemTests {
         assertTrue (1 == genericItem.getMinDistanceEqualsItem());
     }
 
+    @Test
+    public void testItemToString(){
+        Item genericItem = new Item(4);
+        assertTrue(genericItem.toString().equals("<1,-1,1,-1,4,0,>"));
+    }
 }
